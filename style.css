@@ -1,10 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;400;700&display=swap');
+
+*{
+    box-sizing: border-box;
+    margin:0;
+    padding:0;
+}
+
+
 .wrapper{
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 30px;
 }
 
-#selectRegions { 
+#selectCities { 
     font-size: 16px; 
     font-family: sans-serif; 
     font-weight: 700; 
@@ -24,11 +34,39 @@
     background-size: .65em ; 
 } 
 
-#selectRegions::-ms-expand { display: none; } 
-#selectRegions:hover { border-color: #888; } 
-#selectRegions:focus {
+#selectCities::-ms-expand { display: none; } 
+#selectCities:hover { border-color: #888; } 
+#selectCities:focus {
     border-color: #aaa; 
     box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
     color: #222;
     outline: none; 
 } 
+
+
+.weather-forecast-item {
+    font-weight: 300;
+    font-size: 20px;
+}
+
+.weather-forecast .weather-forecast-item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 10px;
+    border: 1px solid #eee;
+    padding: 10px;
+    border-radius: 15px;
+    background: rgba(0,0,0,0.2)
+}
+
+.weather-forecast .weather-forecast-item .dayWeek{
+    padding: 5px 15px;
+    background: #28c0d4;
+    border-radius: 50px;
+    text-align: center;    
+    box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
+    margin-bottom: 20px;
+}
+
