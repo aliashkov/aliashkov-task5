@@ -49,14 +49,14 @@
     font-size: 20px;
 }
 
+
+
 .weather-forecast .weather-forecast-item{
-    display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin: 0 10px;
+    margin: 0 2%;
     border: 1px solid #eee;
-    padding: 10px;
+    padding: 2%;
     border-radius: 15px;
     background: rgba(0,0,0,0.2)
 }
@@ -70,3 +70,21 @@
     margin-bottom: 20px;
 }
 
+@media (min-width: 1000px){
+    .weather-forecast{
+        display: flex;
+        flex-direction: row; 
+    }
+
+    .weather-forecast .weather-forecast-item{
+        margin: 0 1%;
+        padding: 1%;
+    }
+}
+
+@media (max-width: 1000px) {
+    .weather-forecast .weather-forecast-item{
+        display: flex;
+        flex-direction: column;
+    }
+}
