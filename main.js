@@ -13,21 +13,25 @@ function displayWeather(){
                 fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${city.lat}&lon=${city.lng}&appid=${apiKey}`)
                     .then(response => response.json())
                     .then(result => {
-                        for (let index = 0; index < 5; index++) {
-                            const currentDay = (day + index) > 6 ? (day + index - 7) : (day + index);
-                            document.getElementById(`dayWeek${index + 1}`).innerHTML = `${days[currentDay]}`;
-                            document.getElementById(`temperatureDay${index + 1}`).innerHTML = `Температура воздуха : ${Math.ceil(result.daily[index].temp.day - temperatureKelvin)} °С`;
-                            document.getElementById(`humidityDay${index + 1}`).innerHTML = `Влажность : ${result.daily[index].humidity} %`;
-                            document.getElementById(`windDay${index + 1}`).innerHTML = `Скорость ветра : ${Math.ceil(result.daily[index].wind_speed)} м/с`;
-                            (result.daily[index].weather).forEach(elem => {
-                                document.getElementById(`imgWeatherDay${index + 1}`).setAttribute('src', `http://openweathermap.org/img/wn/${elem.icon}@2x.png`);
-                            })
-                        }
+                       displayData(result)
                     }
                 )
             }
         })
     })
+}
+
+function displayData(result){
+    for (let index = 0; index < 5; index++) {
+        const currentDay = (day + index) > 6 ? (day + index - 7) : (day + index);
+        document.getElementById(`dayWeek${index + 1}`).innerHTML = `${days[currentDay]}`;
+        document.getElementById(`temperatureDay${index + 1}`).innerHTML = `Температура воздуха : ${Math.ceil(result.daily[index].temp.day - temperatureKelvin)} °С`;
+        document.getElementById(`humidityDay${index + 1}`).innerHTML = `Влажность : ${result.daily[index].humidity} %`;
+        document.getElementById(`windDay${index + 1}`).innerHTML = `Скорость ветра : ${Math.ceil(result.daily[index].wind_speed)} м/с`;
+        (result.daily[index].weather).forEach(elem => {
+            document.getElementById(`imgWeatherDay${index + 1}`).setAttribute('src', `http://openweathermap.org/img/wn/${elem.icon}@2x.png`);
+        })
+    }
 }
 
 const day = new Date().getDay();
