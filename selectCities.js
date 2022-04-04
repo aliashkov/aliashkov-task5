@@ -3,19 +3,24 @@ const url = 'https://gist.githubusercontent.com/alex-oleshkevich/6946d85bf075a60
 
 export default function getSelectCities() {
     let citiesList = [];
-    fetch(url)
-        .then(response => response.json())
-        .then(result => result.forEach(element => {
-            element.regions.forEach(region => {
-                region.cities.forEach(city => {
-                    citiesList.push(city);
+    try {
+        fetch(url)
+            .then(response => response.json())
+            .then(result => result.forEach(element => {
+                element.regions.forEach(region => {
+                    region.cities.forEach(city => {
+                        citiesList.push(city);
+                    })
                 })
-            })
-            citiesList.map(city => city.name).sort().forEach(name => {
-                const opt = document.createElement('option');
-                select.appendChild(opt);
-                opt.innerHTML = name;
-            })
-        }));
-    return citiesList;
+                citiesList.map(city => city.name).sort().forEach(name => {
+                    const opt = document.createElement('option');
+                    select.appendChild(opt);
+                    opt.innerHTML = name;
+                })
+            }));
+        return citiesList;
+    } catch (error) {
+        console.error('Ошибка:', error);
+    }
+
 }
