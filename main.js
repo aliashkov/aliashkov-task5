@@ -49,3 +49,4 @@ function displayWeatherOnFiveDays(result) {
 const day = new Date().getDay();
 let citiesList = getSelectCities();
 getWeather();
+
