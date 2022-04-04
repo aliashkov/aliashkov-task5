@@ -26,20 +26,26 @@ function getWeather() {
 }
 
 function displayWeatherOnFiveDays(result) {
-    for (let index = 0; index < 5; index++) {
-        document.getElementById("weather-forecast").hidden = false;
+    document.getElementById("weather-forecast").hidden = false;
+
+    document.querySelectorAll('#dayWeek').forEach((elem, index) => {
         const currentDay = (day + index) > 6 ? (day + index - 7) : (day + index);
-        document.getElementById(`dayWeek${index + 1}`).innerHTML = `${days[currentDay]}`;
-        document.getElementById(`temperatureDay${index + 1}`).innerHTML = `Температура воздуха : ${Math.ceil(result.daily[index].temp.day - temperatureKelvin)} °С`;
-        document.getElementById(`humidityDay${index + 1}`).innerHTML = `Влажность : ${result.daily[index].humidity} %`;
-        document.getElementById(`windDay${index + 1}`).innerHTML = `Скорость ветра : ${Math.ceil(result.daily[index].wind_speed)} м/с`;
-        (result.daily[index].weather).forEach(elem => {
-            document.getElementById(`imgWeatherDay${index + 1}`).setAttribute('src', `http://openweathermap.org/img/wn/${elem.icon}@2x.png`);
-        })
-    }
+        elem.innerHTML = `${days[currentDay]}`;
+    })
+    document.querySelectorAll('#temperatureDay').forEach((elem, index) => {
+        elem.innerHTML = `Температура воздуха : ${Math.ceil(result.daily[index].temp.day - temperatureKelvin)} °С`
+    })
+    document.querySelectorAll('#humidityDay').forEach((elem, index) => {
+        elem.innerHTML = `Влажность : ${result.daily[index].humidity} %`;
+    })
+    document.querySelectorAll('#windDay').forEach((elem, index) => {
+        elem.innerHTML = `Скорость ветра : ${Math.ceil(result.daily[index].wind_speed)} м/с`;
+    })
+    document.querySelectorAll('imgWeatherDay').forEach((elem, index) => {
+        setAttribute('src', `http://openweathermap.org/img/wn/${elem.result.daily[index].weather[0].icon}@2x.png`);
+    })
 }
 
-document.getElementById("weather-forecast").hidden = true;
 const day = new Date().getDay();
 let citiesList = getSelectCities();
 getWeather();
